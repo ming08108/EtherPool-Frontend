@@ -1,0 +1,65 @@
+html
+	head
+		link(href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css", rel="stylesheet")
+		link(href="http://purecss.io/combo/1.18.13?/css/layouts/marketing.css", rel="stylesheet")
+	body
+
+
+
+		div(class="header")
+			div(class="home-menu pure-menu pure-menu-horizontal")
+				a(class="pure-menu-heading", href="/") Ethereum Pool (pre-alpha)
+
+
+
+
+		div(class="pure-g")
+			div(class="pure-u-1-5")
+			div(class="pure-u-3-5")
+
+				h1(style="color:red") WARNING IN THE PRE-ALPHA PHASE YOU MAY NOT GET EXPECTED (or any) PAYOUTS!
+				p We will do our best to payout but nothing is guaranteed
+
+				h1 Welcome to pooleum, the 2nd ever Ethereum pool!
+				p(style='white-space:pre-wrap;').
+					We are currently in an open alpha v2 testing our pool software and servers under load. As such, this page will remain mostly featureless as we work on scaling issues and of course, better ui design.
+
+					Pool address is 0x8ab68e66cbe9f38ad5c330a6b888dbc73788254a
+					
+					To begin mining type:
+					ethminer -F pooleum.com:3000/#[b address]/#[b esthashrate] -G
+
+					For example:
+					ethminer -F pooleum.com:3000/0x9931d557592df55fcba2118d54f054309571c5db/20 -G
+
+					My address being 0x9931d557592df55fcba2118d54f054309571c5db and my hashrate being 20mh/s. You don't need to be exact, just as close as possible or you won't be mining efficiently.
+
+					This is an OPEN ALPHA so I expect there will be problems in the beginning! As we are running on development servers, there may be downtime as we are targeted by attackers. Please bear with us as we move forward in development.
+					
+					Any questions can be forwarded to /u/elonmuskdrive on reddit.
+
+				h3 Payouts
+				p Payouts are proportional, will payout every 24 hours.
+					
+
+				-
+					var total = 0;
+					for(var i = 0; i < shares.length; i++){
+						total = total + parseFloat(shares[i].split(":")[1]/20)
+					}
+				
+
+				h1= "Pool Total: " + (total/1000).toFixed(2) + " Gh/s"
+				table(class='pure-table pure-table-bordered pure-table-striped', style="width:100%")
+					thead
+						tr
+							td Address
+							td Mh/s (20 min average)
+					tbody
+						each item in shares
+							- var address = item.split(":")[0]
+							tr
+								td
+									a(href= "/"+address)= address
+								td= item.split(":")[1]/20
+			div(class="pure-u-1-5")
